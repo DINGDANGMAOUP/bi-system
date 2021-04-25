@@ -28,7 +28,7 @@ public class MenuController {
   @GetMapping("/{name}")
   public Result getMenuTree(@PathVariable(value = "name",required = false) String name){
     List<SystemReportService> menuTree = menuService.listByName("yinlu\\zsdan");
-    MenuTreeUtil.construct(menuTree)
+    MenuTreeUtil.construct(menuTree);
     return Result.success(menuTree);
   }
 
