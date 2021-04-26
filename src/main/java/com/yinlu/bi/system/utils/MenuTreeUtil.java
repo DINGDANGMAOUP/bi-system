@@ -2,13 +2,9 @@ package com.yinlu.bi.system.utils;
 
 import com.yinlu.bi.system.constants.Constants;
 import com.yinlu.bi.system.domain.SystemReportService;
-import com.yinlu.bi.system.service.SystemgroupreportService;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
-import org.apache.commons.lang3.ArrayUtils;
-import org.apache.commons.lang3.StringUtils;
 
 /** @author dzhao1 */
 public class MenuTreeUtil {
@@ -26,6 +22,9 @@ public class MenuTreeUtil {
     List<SystemReportService> menuUrlList = menuBar.stream().filter(menu ->
         Pattern.matches(Constants.URL, menu.getRUrl())
     ).collect(Collectors.toList());
+
+
+
     return null;
   }
 }

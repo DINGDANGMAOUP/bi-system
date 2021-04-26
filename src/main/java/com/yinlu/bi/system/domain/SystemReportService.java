@@ -89,16 +89,13 @@ public class SystemReportService implements Serializable {
      */
     @TableField(value = "IsUserControl")
     private Integer isUserControl;
-
+    @TableField(exist = false)
+    private int level;
     @TableField(exist = false)
     private List<SystemReportService> children;
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
 
-//    public boolean[] getChildren() {
-//        if (this.children==null)this.children=new ArrayList<>();
-//        return children;
-//    }
 
     @Override
     public boolean equals(Object that) {
