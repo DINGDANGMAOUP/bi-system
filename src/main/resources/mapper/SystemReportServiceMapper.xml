@@ -25,4 +25,32 @@
         ModifiedOn,IsHome,status,
         RSort,PicClass,IsUserControl
     </sql>
+  <select id="listByName" resultType="com.yinlu.bi.system.domain.SystemReportService">
+    SELECT
+      systemUser.GroupId ,
+      systemGroupReport.ReportId,
+      systemReportService.RName,
+      systemReportService.RId ,
+      systemReportService.RPId,
+      systemReportService.RUrl,
+      systemReportService.RPName
+    FROM
+      [dbo].[systemUser]
+      LEFT JOIN systemGroupReport ON ( systemUser.GroupId= systemGroupReport.GroupId )
+      INNER JOIN systemReportService ON ( systemReportService.RId= systemGroupReport.ReportId )
+    WHERE
+      systemUser.DomainAccount=#{name}
+      AND systemUser.status= 0
+      AND systemGroupReport.status= 0
+      AND systemReportService.status= 0
+    GROUP BY
+      systemReportService.RId ,
+      systemUser.GroupId,
+      systemGroupReport.ReportId,
+      systemReportService.RName,
+      systemReportService.RPId,
+      systemReportService.RUrl,
+      systemReportService.RPName
+  </select>
+
 </mapper>

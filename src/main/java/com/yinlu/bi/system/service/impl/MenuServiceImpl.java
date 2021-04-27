@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 import javax.annotation.Resource;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -31,17 +32,17 @@ public class MenuServiceImpl implements MenuService {
   public List<SystemReportService> listByName(String name) {
     List<SystemReportService> sysMenus = new ArrayList<>();
     List<SystemReportService> menus = findTreeByName(name);
+//    List<SystemReportService> menus=systemReportServiceService.listByName(name);
     menus.forEach(
         menu -> {
-          if (menu.getRPId() == Constants.LEVEL
-              && Constants.NULL.equalsIgnoreCase(menu.getRPName())) {
+          if (menu.getRPId() == Constants.LEVEL) {
             menu.setLevel(Constants.LEVEL);
             if (!exists(sysMenus, menu)) {
               sysMenus.add(menu);
             }
           }
         });
-    sysMenus.sort((o1, o2) -> o1.getRSort().compareTo(o2.getRSort()));
+//    sysMenus.sort((o1, o2) -> o1.getRSort().compareTo(o2.getRSort()));
     findChildren(sysMenus, menus);
     return sysMenus;
   }
